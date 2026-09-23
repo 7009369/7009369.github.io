@@ -1,6 +1,7 @@
 // Millis Demo
 
 let waitTime = 2000;
+let lastSwapTime = 0;
 let state = "red";
 
 async function setup() {
@@ -12,47 +13,23 @@ function draw() {
   drawBackground();
 }
 
-function swapStateIfNeeded(){
-  if (millis() > lastSwapTime + waitTime){
-    if(state === "red"){
+function swapStateIfNeeded() {
+  if (millis() > lastSwapTime + waitTime) {
+    lastSwapTime = millis();
+    if (state === "red") {
       state = "black";
     }
-  }
-  else if (state === "black"){
-    state = "red";
+    else if (state === "black") {
+      state = "red";
+    }
   }
 }
 
-function drawbackground(){
-  if (state === "black"){
+function drawBackground() {
+  if (state === "black") {
     background("black");
   }
-  else if(state === "red"){
+  else if (state === "red") {
     background("red");
   }
-
 }
-
-
-// function draw() {
-//   // if (millis() < waitTime) {
-//   //   background("black");
-//   // }
-//   // else{
-//   //   background("red");
-//   // }
-//   if (state === "black"){
-//     if (millis < waitTime){
-//       background("black");
-//       state = "red";
-//     }
-//   }
-//   else if(state === "red"){
-//     if (millis < waitTime + 2000){
-//       background("red");
-//       state = "black";
-//     }
-//   }
-
-//   // console.log(millis());
-// }
