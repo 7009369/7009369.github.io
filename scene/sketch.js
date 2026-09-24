@@ -11,11 +11,14 @@ async function setup() {
 }
 
 function draw() {
-  //background(220);
-  fill(random(0,255));
-  circle(random(0, windowWidth), random(0, windowHeight), 100);
+  background(255);
+  mouseClicked();
+  
 }
 
-function showTarget(){
-  if
+function mouseClicked(){
+  fill("black");
+  circle(random, mouseY, 100);
 }
+
+
