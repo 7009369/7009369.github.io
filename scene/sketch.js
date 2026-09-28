@@ -12,13 +12,14 @@ async function setup() {
 
 function draw() {
   background(255);
-  mouseClicked();
-  
+  mousePressed(); 
 }
 
-function mouseClicked(){
+function mousePressed(){
   fill("black");
-  circle(random, mouseY, 100);
+  if (mouseIsPressed){
+    circle(random, random, 100);
+  }
 }
 
 
