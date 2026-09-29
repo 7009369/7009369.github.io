@@ -5,21 +5,38 @@
 // Extra for Experts:
 // - describe what you did to take this project "above and beyond"
 
+let d = 150;
+let circleX;
+let circleY;
+let state = "show";
 
 async function setup() {
   createCanvas(windowWidth, windowHeight);
 }
 
 function draw() {
-  background(255);
-  mousePressed(); 
+  mousePressed();
+  background("black");
 }
 
-function mousePressed(){
-  fill("black");
-  if (mouseIsPressed){
-    circle(random, random, 100);
+function mouseClicked(){
+  let circleX = random(mouseX - 300, mouseX + 300);
+  let circleY = random(mouseY - 300, mouseY + 300);
+  
+  if (state === "show"){
+    fill("red");
+    circle(circleX, circleY, d);
+    state = "hide";
   }
+
+  if (dist (mouseX, mouseY, circleX, circleY) > d){
+    remove();
+    state = "hide";
+  }
+
 }
 
+// function spawnNewCircle(){
+  
+// }
 
