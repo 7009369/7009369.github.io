@@ -1,12 +1,7 @@
-// Project Title
-// Your Name
-// Date
-//
-// Extra for Experts:
-// - describe what you did to take this project "above and beyond"
 
 let circleX, circleY; 
 let circleRadius = 90; 
+<<<<<<< HEAD
 let score = 0;
 let maxTries;
        
@@ -25,6 +20,13 @@ function setup() {
     text("Score: " + score, windowWidth/2, windowHeight/2);
   }
 
+=======
+let score = 0;       
+
+function setup() {
+  createCanvas(windowWidth, windowHeight); 
+  spawnCircle();          
+>>>>>>> 45587fa182584c68b89a9bae5ed9edd03f04724a
 }
 
 function draw() {
@@ -46,10 +48,16 @@ function mousePressed() {
   let d = dist(mouseX, mouseY, circleX, circleY);
 
   if (d < circleRadius) {
+<<<<<<< HEAD
     score++;       
     spawnCircle();   
   }
   maxTries++;
+=======
+    score++;        
+    spawnCircle();   
+  }
+>>>>>>> 45587fa182584c68b89a9bae5ed9edd03f04724a
 }
 
 
