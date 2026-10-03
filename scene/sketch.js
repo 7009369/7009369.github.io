@@ -15,7 +15,7 @@ let circleCount = 0;
 let maxCircles = 30;
 let gameOver = false;
 let buttonX, buttonY, buttonWidth, buttonHeight;
-let maxTries;
+let maxTries = 30;
        
 
 //Main target spawning function and play again button
@@ -59,7 +59,7 @@ function draw() {
     noStroke();
     textSize(36);
     textAlign(CENTER, CENTER);
-    text("GAME OVER!", width / 2, innerHeight / 2);
+    text("GAME OVER!", width / 2, height / 2);
     textSize(24);
     text("Final Score: " + score + " / " + maxCircles, width / 2, height / 2 + 30);
 
@@ -91,7 +91,7 @@ function mousePressed() {
     }
     return;
   }
-
+  maxTries++;
   let d = dist(mouseX, mouseY, circleX, circleY);
 
   if (d < circleRadius) {
@@ -99,11 +99,8 @@ function mousePressed() {
     score++;       
     spawnCircle();   
   }
-  maxTries++;
-
-    score++;        
-    spawnCircle();   
-  }
+  
+}
 
 //target spawning
 function spawnCircle(){
