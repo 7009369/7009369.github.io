@@ -9,12 +9,36 @@
 //Declare Values 
 let circleX, circleY; 
 let circleRadius = 90; 
+<<<<<<< HEAD
 let score = 0;
 let circleTimer = 0;
 let circleCount = 0;
 let maxCircles = 30;
 let gameOver = false;
 let buttonX, buttonY, buttonWidth, buttonHeight;
+=======
+<<<<<<< HEAD
+let score = 0;
+let maxTries;
+       
+
+function setup() {
+  createCanvas(windowWidth, windowHeight); 
+  maxTries = 0;
+  if (maxTries <= 30){
+    spawnCircle();         
+  }
+  else{
+    fill(0);
+    noStroke();
+    textSize(100);
+    textAlign(LEFT, TOP);
+    text("Score: " + score, windowWidth/2, windowHeight/2);
+  }
+
+=======
+let score = 0;       
+>>>>>>> 1160ed06d42840e9bb95c2d9c21e7fe84f3f04bf
 
 
 //Main target spawning function and play again button
@@ -25,6 +49,7 @@ function setup() {
   buttonX = width / 2 - buttonWidth / 2
   buttonY =  height / 2 - buttonHeight / 2 + 100
   spawnCircle();          
+>>>>>>> 45587fa182584c68b89a9bae5ed9edd03f04724a
 }
 
 function draw() {
@@ -93,9 +118,16 @@ function mousePressed() {
   let d = dist(mouseX, mouseY, circleX, circleY);
 
   if (d < circleRadius) {
+<<<<<<< HEAD
+    score++;       
+    spawnCircle();   
+  }
+  maxTries++;
+=======
     score++;        
     spawnCircle();   
   }
+>>>>>>> 45587fa182584c68b89a9bae5ed9edd03f04724a
 }
 
 //target spawning
