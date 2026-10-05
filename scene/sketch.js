@@ -23,15 +23,15 @@ function setup() {
   createCanvas(windowWidth, windowHeight); 
   buttonWidth = 200;
   buttonHeight = 50;
-  buttonX = width / 2 - buttonWidth / 2
-  buttonY =  height / 2 - buttonHeight / 2 + 100
+  buttonX = width / 2 - buttonWidth / 2;
+  buttonY =  height / 2 - buttonHeight / 2 + 100;
   spawnCircle();          
 
 }
 
 function draw() {
   background(220);
-//Time the targets and make targets change color from green to red as more and more time passes
+  //Time the targets and make targets change color from green to red as more and more time passes
   if (!gameOver){
     let timePassed = millis() - circleTimer;
   
@@ -53,7 +53,7 @@ function draw() {
     }
   }
 
-//Ending screen and Play button
+  //Ending screen and Play button
   else{
     fill(0);
     noStroke();
