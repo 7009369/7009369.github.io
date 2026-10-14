@@ -14,7 +14,7 @@ async function setup() {
 }
 
 function draw() {
-  // background(220);
+  background(220);
   
   
   let x = noise(time) * width;
