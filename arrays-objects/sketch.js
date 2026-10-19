@@ -10,6 +10,8 @@ let deltatime = 0.02;
 const TIME_OFFSET = 10000;
 let millis;
 let points = 0;
+let circleX;
+let circleY;
 
 
 async function setup() {
@@ -17,20 +19,28 @@ async function setup() {
 }
 
 function draw() {
-  background(220);
-  pointsDisplay();
-  
-  let circleX = noise(time) * width;
-  let circleY = noise(time + TIME_OFFSET) * height;
+  //background(220);
+  ballMove();
+  followingBall();
+}
+
+function ballMove(){
+  circleX = noise(time) * width;
+  circleY = noise(time + TIME_OFFSET) * height;
   fill("black");
   circle(circleX, circleY, 200);
   time += deltatime;
-  
 }
 
-function pointsDisplay(){
-  if (mouseX >= circleX + 200 && mouseX <= circleX - 200 && mouseY >= circleY + 200 && mouseY <= circleY + 200){
+function followingBall(){
+  let d = dist(mouseX, mouseY, circleX, circleY);
+  if (d < 200){
     points = points + 1;
+    background("red");
   }
-  text(points, 100, 100);
+  fill(0);
+  noStroke();
+  textSize(20);
+  textFont("Georgia");
+  text("Your Points : " + points, 50, 100);
 }
