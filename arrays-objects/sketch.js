@@ -19,7 +19,9 @@ async function setup() {
 }
 
 function draw() {
-  //background(220);
+  background(255);
+  //noStroke();
+  stroke();
   ballMove();
   followingBall();
 }
@@ -27,7 +29,7 @@ function draw() {
 function ballMove(){
   circleX = noise(time) * width;
   circleY = noise(time + TIME_OFFSET) * height;
-  fill("black");
+  fill("white");
   circle(circleX, circleY, 200);
   time += deltatime;
 }
@@ -36,7 +38,7 @@ function followingBall(){
   let d = dist(mouseX, mouseY, circleX, circleY);
   if (d < 200){
     points = points + 1;
-    background("red");
+  
   }
   fill(0);
   noStroke();
