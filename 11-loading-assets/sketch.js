@@ -2,6 +2,7 @@
 
 let coinImg;
 let coinSound;
+let angle = 0;
 
 async function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -12,6 +13,9 @@ async function setup() {
 function draw() {
   background("black");
 
+  angle += 1;
+
+  rotateY(frameCount * 0.01);
   image(coinImg, width/2, height/2);
 }
 
