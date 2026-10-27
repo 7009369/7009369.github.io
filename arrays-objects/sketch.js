@@ -1,48 +1,107 @@
 // Arrays and Object Notation
 // Ashad Hussain
-// Date
+// 2026-10-26
 //
 // Extra for Experts:
-// - describe what you did to take this project "above and beyond"
+//I used the p5.js function nf in line 98.
 
-let time = 0;
-let deltatime = 0.02;
-const TIME_OFFSET = 10000;
-let millis;
 let points = 0;
-let circleX;
-let circleY;
+let rankNow = "";
+let ranks = ["Iron", "Silver", "Gold", "Diamond", "Immortal"];
+let totalTime = 15;
+let startTime = 0;
+let timeLeft = totalTime;
+let gameOver = false;
 
+
+let theBall = {
+  x: 0,
+  y: 0,
+  diameter: 200,
+  time: 0,
+  timeOffset: 10000,
+  speed: 0.02,
+
+  move(){
+    theBall.x = noise(theBall.time) * width;
+    theBall.y = noise(theBall.time + theBall.timeOffset) * height;
+    theBall.time += theBall.speed;
+  },
+
+  display(){
+    stroke(0);
+    fill("red");
+    circle(theBall.x, theBall.y, theBall.diameter)
+  }
+};
+ 
 
 async function setup() {
   createCanvas(windowWidth, windowHeight);
+  startTime = millis();
 }
 
 function draw() {
   background(255);
-  //noStroke();
-  stroke();
-  ballMove();
-  followingBall();
-}
 
-function ballMove(){
-  circleX = noise(time) * width;
-  circleY = noise(time + TIME_OFFSET) * height;
-  fill("white");
-  circle(circleX, circleY, 200);
-  time += deltatime;
-}
-
-function followingBall(){
-  let d = dist(mouseX, mouseY, circleX, circleY);
-  if (d < 200){
-    points = points + 1;
+  let timeGone = (millis()- startTime) / 1000;
+  timeLeft = totalTime - timeGone;
   
+  if(timeLeft <= 0){
+    timeLeft = 0;
+    gameOver = true;
+    noLoop();
   }
+
+  if(!gameOver){
+    theBall.move();
+    theBall.display();
+    scoreCheck();
+    changeRank();
+  }
+  displayUI();
+}
+
+function scoreCheck(){
+  let d = dist(mouseX, mouseY, theBall.x, theBall.y);
+  if (d < theBall.diameter/2){
+    points = points + 1;
+  }
+}
+
+function changeRank(){
+  if(points >= 600){
+    rankNow = ranks[4];
+  }
+  else if(points >= 300){
+    rankNow = ranks[3];
+  }
+  else if(points >= 100){
+    rankNow = ranks[2];
+  }
+  else if(points >= 50){
+    rankNow = ranks[1];
+  }
+  else{
+    rankNow = ranks[0];
+  }
+}
+
+function displayUI(){
   fill(0);
   noStroke();
   textSize(20);
   textFont("Georgia");
-  text("Your Points : " + points, 50, 100);
+
+  text("Points: " + points, 50, 80);
+  text("Rank: " + rankNow, 50, 120);
+  text("Time Left: " + nf(timeLeft, 1, 1) + "s", 50, 160);
+  if(gameOver){
+    textSize(50);
+    textAlign(CENTER, CENTER);
+    text("GAME OVER!", width/2, height/2);
+    textSize(25);
+    text("Final Score: " + points + " (" + rankNow + ") ", width/2, height/2 + 50);
+  }
 }
+
