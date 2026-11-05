@@ -19,3 +19,4 @@
 ## Projects
 - [Interactive Scene](scene)
 - [Arrays and Object Notation](arrays-objects)
+- [2d Arrays](2d-arrays)

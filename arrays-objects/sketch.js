@@ -31,7 +31,7 @@ let theBall = {
   display(){
     stroke(0);
     fill("red");
-    circle(theBall.x, theBall.y, theBall.diameter)
+    circle(theBall.x, theBall.y, theBall.diameter);
   }
 };
  
