@@ -20,4 +20,5 @@
 ## Projects
 - [Interactive Scene](scene)
 - [Arrays and Object Notation](arrays-objects)
-- [2d Arrays](2d-arrays)
+- [2d Array](array-2d)
+- [2d array assignment](array-2d-me)
