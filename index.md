@@ -16,6 +16,8 @@
 - [Rectangular Grid](13-rect)
 - [Conways Game of Life](14-life)
 - [character in Grid](15-character)
+- [setTimeout](16-set-timeout)
+- [setInterval](17-set-interval)
 
 ## Projects
 - [Interactive Scene](scene)
