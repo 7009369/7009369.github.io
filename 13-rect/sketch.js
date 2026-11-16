@@ -36,10 +36,10 @@ function mousePressed() {
     toggleCell(x, y);
   
     //neighbours
-    toggleCell(x + 1, y);
-    toggleCell(x - 1, y);
-    toggleCell(x, y + 1);
-    toggleCell(x, y - 1);
+    toggleCell(x, y);
+    toggleCell(x, y);
+    toggleCell(x, y);
+    toggleCell(x, y);
   }
 }
 
