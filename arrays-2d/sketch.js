@@ -1,6 +1,13 @@
+// 2d-Arrays
+// Ashad Hussain
+// November 22, 2026
+// This game is very similar to floor is alva, You have to make it to the safe tiles that are highlighted before the floor turns to lava.
+//Extra for Experts:
+// I could not attempt anything that would be considered extra.
+
 const CELL_SIZE = 100;
-const OPEN_TILE = 0;   // green (walkable)
-const IMPASSIBLE = 1;  // orange (lava)
+const OPEN_TILE = 0;   
+const IMPASSIBLE = 1; 
 const PLAYER = 9;
 
 let rows;
@@ -12,17 +19,39 @@ let thePlayer = {
 };
 
 let startTime;
-let roundLength = 5000; // 5 seconds
-let warningTime = 2000; // highlight safe spots in last 2 seconds
+let roundLength = 5000; 
+let warningTime = 2000; 
 let safe1 = { x: 0, y: 0 };
 let safe2 = { x: 0, y: 0 };
 let gameOver = false;
 
-function setup() {
+async function setup() {
   createCanvas(windowWidth, windowHeight);
   rows = floor(height / CELL_SIZE);
   cols = floor(width / CELL_SIZE);
   startRound();
+}
+
+function draw() {
+  background(220);
+
+  let timePassed = millis() - startTime;
+  let timeLeft = (roundLength - timePassed) / 1000;
+  let highlightSafe = !gameOver && timePassed >= roundLength - warningTime;
+
+  if (!gameOver && timePassed >= roundLength) {
+    turnBoardToLava();
+  }
+
+  displayGrid(highlightSafe);
+
+  fill(0);
+  textSize(24);
+  if (gameOver) {
+    text("Game Over! Press R to restart", 20, 40);
+  } else {
+    text("Time: " + nf(max(0, timeLeft), 1, 1), 20, 40);
+  }
 }
 
 function startRound() {
@@ -32,6 +61,7 @@ function startRound() {
   pickSafeSpots();
   startTime = millis();
 }
+
 
 function pickSafeSpots() {
   safe1.x = floor(random(cols));
@@ -47,28 +77,6 @@ function pickSafeSpots() {
   }
 }
 
-function draw() {
-  background(220);
-
-  let elapsed = millis() - startTime;
-  let timeLeft = (roundLength - elapsed) / 1000;
-  let highlightSafe = !gameOver && elapsed >= roundLength - warningTime;
-
-  if (!gameOver && elapsed >= roundLength) {
-    turnBoardToLava();
-  }
-
-  displayGrid(highlightSafe);
-
-  fill(0);
-  textSize(24);
-  if (gameOver) {
-    text("Game Over! Press R to restart", 20, 40);
-  } else {
-    text("Time: " + nf(max(0, timeLeft), 1, 1), 20, 40);
-  }
-}
-
 function turnBoardToLava() {
   for (let y = 0; y < rows; y++) {
     for (let x = 0; x < cols; x++) {
@@ -79,9 +87,7 @@ function turnBoardToLava() {
     }
   }
 
-  let playerSafe =
-    (thePlayer.x === safe1.x && thePlayer.y === safe1.y) ||
-    (thePlayer.x === safe2.x && thePlayer.y === safe2.y);
+  let playerSafe = (thePlayer.x === safe1.x && thePlayer.y === safe1.y) || (thePlayer.x === safe2.x && thePlayer.y === safe2.y);
 
   if (playerSafe) {
     startRound();
